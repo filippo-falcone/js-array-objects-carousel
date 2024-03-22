@@ -32,6 +32,17 @@ const images = [
 
 stampSlideAndThumbnails(images);
 
+let activeCounter = 0;
+
+const allSlide = document.querySelectorAll('.ms-slide');
+allSlide[activeCounter].classList.remove('d-none');
+allSlide[activeCounter].classList.add('activated');
+const allThumbnails = document.querySelectorAll('.ms-thumbnails');
+allThumbnails[activeCounter].classList.add('ms-border');
+
+const next = document.querySelector('#arrow-down').addEventListener('click', showNext);
+const previous = document.querySelector('#arrow-up').addEventListener('click', showPrevious);
+
 /* FUNCTIONS */
 // Funzione che crea le slide
 // img: elemento che rappresenta la chiave dell'oggetto
@@ -74,3 +85,25 @@ function stampSlideAndThumbnails(array) {
         generateThumbnails(keyImage);
     });
 }
+
+// Funzione richiamata da adEventListened che gestisce il click della freccia in basso
+function showNext() {
+    document.querySelector('.ms-slide.activated').classList.add('d-none');
+    document.querySelector('.ms-slide.activated').classList.remove('activated');
+    document.querySelector('.ms-thumbnails.ms-border').classList.remove('ms-border');
+    activeCounter++;
+    allSlide[activeCounter].classList.remove('d-none');
+    allSlide[activeCounter].classList.add('activated');
+    allThumbnails[activeCounter].classList.add('ms-border');
+}
+
+// Funzione richiamata da adEventListened che gestisce il click della freccia in basso
+function showPrevious() {
+    document.querySelector('.ms-slide.activated').classList.add('d-none');
+    document.querySelector('.ms-slide.activated').classList.remove('activated');
+    document.querySelector('.ms-thumbnails.ms-border').classList.remove('ms-border');
+    activeCounter--;
+    allSlide[activeCounter].classList.remove('d-none');
+    allSlide[activeCounter].classList.add('activated');
+    allThumbnails[activeCounter].classList.add('ms-border');
+} 
