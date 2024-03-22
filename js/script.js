@@ -91,7 +91,11 @@ function showNext() {
     document.querySelector('.ms-slide.activated').classList.add('d-none');
     document.querySelector('.ms-slide.activated').classList.remove('activated');
     document.querySelector('.ms-thumbnails.ms-border').classList.remove('ms-border');
-    activeCounter++;
+    if (activeCounter < allSlide.length - 1) {
+        activeCounter++;
+    } else {
+        activeCounter = 0;
+    }
     allSlide[activeCounter].classList.remove('d-none');
     allSlide[activeCounter].classList.add('activated');
     allThumbnails[activeCounter].classList.add('ms-border');
@@ -102,7 +106,11 @@ function showPrevious() {
     document.querySelector('.ms-slide.activated').classList.add('d-none');
     document.querySelector('.ms-slide.activated').classList.remove('activated');
     document.querySelector('.ms-thumbnails.ms-border').classList.remove('ms-border');
-    activeCounter--;
+    if (activeCounter > 0) {
+        activeCounter--;
+    } else {
+        activeCounter = allSlide.length - 1;
+    }
     allSlide[activeCounter].classList.remove('d-none');
     allSlide[activeCounter].classList.add('activated');
     allThumbnails[activeCounter].classList.add('ms-border');
