@@ -1,5 +1,8 @@
 /*
 // Creo una funzione che crea gli elemeni nel dom che vanno popolati
+// Metto in ascolto l'elemento del dom
+// - All'incrementare dell'indice tolgo la classe 'd-none' per le slide e aggiungo la classe 'ms-border' alle thumbnails
+// Riperto l'operazione anche per il secondo elemento del dom
 */
 
 /* MATERIALS */
@@ -26,15 +29,8 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
-let active = 0;
-/* BODY */
-images.forEach((object) => {
-    const keyImage = object.image;
-    const keyTitle = object.title;
-    const keyText = object.text;
-    const slide = generateSlide(keyImage, keyTitle, keyText);
-    const thumbnails = generateThumbnails(keyImage);
-});
+
+stampSlideAndThumbnails(images);
 
 /* FUNCTIONS */
 // Funzione che crea le slide
@@ -47,8 +43,8 @@ function generateSlide(img, title, text) {
     slideContainer.innerHTML += `
         <div class="d-none ms-slide position-relative">
             <img src="${img}">
-            <div class="position-absolute bottom-0 right-0 text-end text-light px-4">
-                <div>${title}</div>
+            <div class="position-absolute bottom-0 text-end text-light px-4 w-100">
+                <h1>${title}</h1>
                 <p>${text}</p>
             </div>
         </div>`
@@ -59,10 +55,22 @@ function generateSlide(img, title, text) {
 // img: elemento che rappresenta la chiave dell'oggetto
 // return: elemento del DOM che rappresenta una thumbnails
 function generateThumbnails(img) {
-    const slideContainer = document.querySelector('#thumbnails-container');
-    slideContainer.innerHTML += `
-        <div class="ms-thumbnails col">
+    const thumbnailsContainer = document.querySelector('#thumbnails-container');
+    thumbnailsContainer.innerHTML += `
+        <div class="ms-thumbnails col p-0">
             <img src="${img}">
         </div>`
-    return slideContainer;
+    return thumbnailsContainer;
+}
+
+// Funzione che stampa gli elementi nel dom
+// array: elemento che rappresenta un array
+function stampSlideAndThumbnails(array) {
+    array.forEach((object) => {
+        const keyImage = object.image;
+        const keyTitle = object.title;
+        const keyText = object.text;
+        generateSlide(keyImage, keyTitle, keyText);
+        generateThumbnails(keyImage);
+    });
 }

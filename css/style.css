@@ -7,7 +7,7 @@ img {
 
 /* MAIN */
 .ms-carousel {
-    height: 25rem;
+    height: 30rem;
 }
 
 .ms-slide {
@@ -25,6 +25,7 @@ img {
     background-color: rgba(255, 255, 255, 0.479);
     left: 50%;
     transform: translateX(-50%);
+    cursor: pointer;
 }
 
 .ms-up {
